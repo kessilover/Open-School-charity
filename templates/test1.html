@@ -1,0 +1,128 @@
+<html>
+   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="Flatfy Free Flat and Responsive HTML5 Template ">
+    <meta name="author" content="RAMZI" >
+
+    <title>Results</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Google Web Font -->
+    <link href="../static/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom CSS-->
+    <link href="../static/assets/css/general.css" rel="stylesheet">
+
+	 <!-- Owl-Carousel -->
+    <link href="../static/assets/css/custom.css" rel="stylesheet">
+	<link href="../static/assets/css/owl.carousel.css" rel="stylesheet">
+    <link href="../static/assets/css/owl.theme.css" rel="stylesheet">
+	<link href="../static/assets/css/style.css" rel="stylesheet">
+	<link href="../static/assets/css/animate.css" rel="stylesheet">
+
+	<!-- Magnific Popup core CSS file -->
+	<link rel="stylesheet" href="../static/assets/css/magnific-popup.css">
+
+	<script src="../static/assets/js/modernizr-2.8.3.min.js"></script>  <!-- Modernizr /-->
+	<!--[if IE 9]>
+		<script src="static/assets/js/PIE_IE9.js"></script>
+	<![endif]-->
+	<!--[if lt IE 9]>
+		<script src="static/assets/js/PIE_IE678.js"></script>
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+		<script src="static/assets/js/html5shiv.js"></script>
+	<![endif]-->
+
+</head>
+
+   <body>
+<div class="content-section-b" style="border-top: 0">
+<div class="container">
+<div class="content-section-b" style="border-top: 0">
+  <h2>List of Schools</h2>
+  <table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Address</th>
+      <th>Number Of People</th>
+      <th>Status</th>
+      <th>Type</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+  {% for exam in exams %} 
+    <tr>
+      <th scope="row"></th>
+       <td class="hidden">{{exam[2]}}</td>
+      <td>{{exam[3]}}</td>
+      <td>{{int(exam[4])}}</td>
+      <td>{{exam[5]}}</td>
+      <td>{{exam[6]}}</td>
+      <td>{{exam[7]}}</td>
+      
+      <td><button class="btn btn-primary" id="choose"> Choose</button></td>
+    </tr>
+  {% end %}
+  </tbody>
+</table>
+
+ 
+  </div>
+    
+</div>     
+</div>
+   <!-- Smoothscroll -->
+	<script type="text/javascript" src="../static/assets/js/jquery.corner.js"></script>
+	<script src="../static/assets/js/wow.min.js"></script>
+	 <script src="../static/assets/js/jquery-1.10.2.js"></script>
+    <script src="../static/assets/js/bootstrap.js"></script>
+	<script src="../static/assets/js/owl.carousel.js"></script>
+	<script src="../static/assets/js/script.js"></script>
+	<!-- StikyMenu -->
+	<script src="../static/assets/js/stickUp.min.js"></script>
+	<script>
+	 new WOW().init();
+	                             
+        $(document).ready(function () {
+            // initialize the viewer
+            $('#choose').click(function (event) {
+                var valueForInput1 = $(".hidden").val();
+                
+                var data =
+                {
+                    key1: valueForInput1,
+                    
+                };
+                var dataToSend = JSON.stringify(data);
+                $.ajax(
+                        {
+                            url: '/test/',
+                            type: 'POST',
+                            data: dataToSend,
+                            success: function (jsonResponse) {
+                                var objresponse = JSON.parse(jsonResponse);
+                                console.log(objresponse['newkey']);
+                                $("#responsefield").text(objresponse['newkey']);
+                            },
+                            error: function () {
+                                $("#responsefield").text("Error to load api");
+                            }
+                        });
+	</script>
+	<script src="../static/assets/js/classie.js"></script>
+	<script src="../static/assets/js/uiMorphingButton_inflow.js"></script>
+	<!-- Magnific Popup core JS file -->
+	<script src="../static/assets/js/jquery.magnific-popup.js"></script> 
+	<script src="../static/assets/js/jquery.magnific-popup.js"></script>   
+   </body>
+ </html>
